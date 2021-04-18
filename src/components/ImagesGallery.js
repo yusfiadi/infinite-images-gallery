@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios';
+import axios from 'axios'
 import Container from '@material-ui/core/Container'
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardActions from '@material-ui/core/CardActions'
+import Avatar from '@material-ui/core/Avatar'
+import IconButton from '@material-ui/core/IconButton'
+import { red } from '@material-ui/core/colors'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import ShareIcon from '@material-ui/icons/Share'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
-}));
+}))
 
 const ImagesGallery = () => {
   const classes = useStyles()
@@ -38,23 +38,23 @@ const ImagesGallery = () => {
   }, [])
 
   const fetchData = () => {
-    axios.get(`https://picsum.photos/v2/list?page=${page}&limit=5`)
+    axios.get(`https://picsum.photos/v2/list?page=${page}&limit=10`)
       .then(function (response) {
-        console.log(response.data);
         setImagesGallery(imagesGallery => imagesGallery.concat(response.data))
         setPage(page => page + 1)
       })
       .catch(function (error) {
-        console.log(error);
-      });
+        console.log(error)
+      })
   }
 
   const fetchMoreData = () => {
     setTimeout(() => {
       fetchData()
-    }, 2000);
+    }, 2000)
 
-  };
+  }
+
   return (
     <Container maxWidth="sm" style={{ marginTop: '70px' }}>
       <InfiniteScroll
@@ -86,11 +86,10 @@ const ImagesGallery = () => {
             <CardMedia
               className={classes.media}
               image={item.download_url}
-              title="Paella dish"
             />
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
+                <FavoriteIcon style={{ fill: 'red' }} />
               </IconButton>
               <IconButton aria-label="share">
                 <ShareIcon />
@@ -100,7 +99,7 @@ const ImagesGallery = () => {
         ))
         }
       </InfiniteScroll>
-    </Container >
+    </Container>
   )
 }
 
