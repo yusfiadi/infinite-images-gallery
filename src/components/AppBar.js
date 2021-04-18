@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: '#ffffff'
   },
 }));
 
@@ -21,7 +22,7 @@ const ButtonAppBar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" style={{ backgroundColor: '#1976d2' }}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Galeri Gambar Random
