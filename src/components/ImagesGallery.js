@@ -35,7 +35,7 @@ const ImagesGallery = () => {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = () => {
     axios.get(`https://picsum.photos/v2/list?page=${page}&limit=10`)
